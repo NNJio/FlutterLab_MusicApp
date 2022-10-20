@@ -14,26 +14,54 @@ class StartScreen extends StatefulWidget {
   State<StartScreen> createState() => _StartScreenState();
 }
 
-class _StartScreenState extends State<StartScreen>  with AfterLayoutMixin<StartScreen>{
+class _StartScreenState extends State<StartScreen>
+    with AfterLayoutMixin<StartScreen> {
   get child => null;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF000000),
-      body: Center(
-        child: Column(
-          children: const [
-            
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF000000),
+          leading: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.arrow_back),
+          ),
+          title: const Text('Add Songs'),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search),
+            )
           ],
+          bottom: const TabBar(tabs: [
+            Tab(text: 'Recent'),
+            Tab(text: 'Local'),
+            Tab(text: 'Favorites'),
+          ]),
         ),
-      ),
+        backgroundColor: const Color(0xFF000000),
+        body: const TabBarView(
+          children: [
+            Center(
+              child: Text('1'),
+            ),
+            Center(
+              child: Text('2'),
+            ),
+            Center(
+              child: Text('3'),
+          )
+        ],
+      )
     );
   }
 
   @override
   Future<FutureOr<void>> afterFirstLayout(BuildContext context) async {
-   await Future.delayed(const Duration(seconds: 1));
-   Modular.to.pushNamedAndRemoveUntil(AppRouter.fromModule().login, (p0) => false,arguments: {"id" : 3});
+    await Future.delayed(const Duration(seconds: 1));
+    Modular.to.pushNamedAndRemoveUntil(
+        AppRouter.fromModule().login, (p0) => false,
+        arguments: {"id": 3});
   }
 }
