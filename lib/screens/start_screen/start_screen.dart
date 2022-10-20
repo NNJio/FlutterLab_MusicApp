@@ -15,19 +15,25 @@ class StartScreen extends StatefulWidget {
 }
 
 class _StartScreenState extends State<StartScreen>  with AfterLayoutMixin<StartScreen>{
+  get child => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Start Screen'),
+      backgroundColor: const Color(0xFF000000),
+      body: Center(
+        child: Column(
+          children: const [
+            
+          ],
+        ),
       ),
-      body: Center(child: CircularProgressIndicator()),
     );
   }
 
   @override
   Future<FutureOr<void>> afterFirstLayout(BuildContext context) async {
-   await Future.delayed(Duration(seconds: 1));
+   await Future.delayed(const Duration(seconds: 1));
    Modular.to.pushNamedAndRemoveUntil(AppRouter.fromModule().login, (p0) => false,arguments: {"id" : 3});
   }
 }
